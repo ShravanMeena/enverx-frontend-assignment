@@ -1,16 +1,19 @@
-import {createStore, combineReducers} from 'redux';
-import Auth from './reducers/auth';
+import {createStore, combineReducers, applyMiddleware} from 'redux';
+import expenseReducer from './reducers/expenseReducer';
+import createSagaMiddleware from 'redux-saga';
+import rootSaga from './sagas';
 
-const reducers = combineReducers({
-  auth: Auth,
+const rootReducer = combineReducers({
+  expenseReducer,
 });
 
-function configureStore() {
-  const store = createStore(reducers);
+// Create the saga middleware
+const sagaMiddleware = createSagaMiddleware();
 
-  return store;
-}
+// Create the Redux store
+const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
 
-const store = configureStore();
+// Run the root saga
+sagaMiddleware.run(rootSaga);
 
 export default store;
