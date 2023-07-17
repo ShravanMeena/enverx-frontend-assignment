@@ -1,19 +1,15 @@
-import React, { useState } from 'react';
-import AddTransaction from './components/AddTransaction';
-import TransactionList from './components/TransactionList';
+// Play.ht to the moon 🚀
+
+import * as React from "react";
+import { Provider } from "react-redux";
+import store from "./redux/store";
+import MainRouter from "./navigation/MainRouter";
 
 function App() {
-  const [transactions, setTransactions] = useState([]);
-
-  const handleAddTransaction = (transaction) => {
-    setTransactions([...transactions, transaction]);
-  };
-
   return (
-    <div>
-      <AddTransaction onAddTransaction={handleAddTransaction} />
-      <TransactionList transactions={transactions} />
-    </div>
+    <Provider store={store}>
+      <MainRouter />
+    </Provider>
   );
 }
 
