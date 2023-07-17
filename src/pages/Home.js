@@ -6,10 +6,11 @@ import SpaceDivider from "../components/SpaceDivider";
 
 export default function Home() {
   return (
-    <div style={{
-      padding:10
-    }}>
-
+    <div
+      style={{
+        padding: 10,
+      }}
+    >
       <SpaceDivider height={60} />
       <TransactionForm />
       <SpaceDivider />
