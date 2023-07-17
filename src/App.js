@@ -1,10 +1,20 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
+import React, { useState } from 'react';
+import AddTransaction from './components/AddTransaction';
+import TransactionList from './components/TransactionList';
 
-export default function MyApp() {
+function App() {
+  const [transactions, setTransactions] = useState([]);
+
+  const handleAddTransaction = (transaction) => {
+    setTransactions([...transactions, transaction]);
+  };
+
   return (
     <div>
-      <Button variant="contained">Hello World</Button>
+      <AddTransaction onAddTransaction={handleAddTransaction} />
+      <TransactionList transactions={transactions} />
     </div>
   );
 }
+
+export default App;
